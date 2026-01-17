@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - DevSpark</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            padding: 20px;
+        }
+
+        .login-box {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            width: 100%;
+            max-width: 420px;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-header {
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .login-header .logo-svg {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1rem;
+        }
+
+        .login-header h1 {
+            font-size: 1.8rem;
+            margin: 0 0 0.5rem 0;
+            font-weight: 700;
+        }
+
+        .login-header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+
+        .login-body {
+            padding: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #1f2937;
+            font-size: 0.95rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background-color: #f9fafb;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #6366f1;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: #9ca3af;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .remember-me label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 500;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .login-message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        .login-message.success {
+            background-color: #d1fae5;
+            color: #065f46;
+            border-left: 4px solid #10b981;
+            display: block;
+        }
+
+        .login-message.error {
+            background-color: #fee2e2;
+            color: #991b1b;
+            border-left: 4px solid #ef4444;
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-footer {
+            background-color: #f9fafb;
+            padding: 1.5rem 2.5rem;
+            text-align: center;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .login-footer a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .login-footer a:hover {
+            color: #ec4899;
+            text-decoration: underline;
+        }
+
+        .login-footer p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .forgot-password a {
+            color: #6366f1;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .forgot-password a:hover {
+            color: #ec4899;
+        }
+
+        /* Dark Mode */
+        body.dark-mode .login-box {
+            background-color: #1f2937;
+        }
+
+        body.dark-mode .login-body,
+        body.dark-mode .login-footer {
+            background-color: #1f2937;
+        }
+
+        body.dark-mode .form-group label {
+            color: #f3f4f6;
+        }
+
+        body.dark-mode .form-group input {
+            background-color: #374151;
+            border-color: #4b5563;
+            color: #f3f4f6;
+        }
+
+        body.dark-mode .form-group input:focus {
+            background-color: #374151;
+            border-color: #6366f1;
+        }
+
+        body.dark-mode .login-footer {
+            border-top-color: #374151;
+        }
+
+        body.dark-mode .login-footer p {
+            color: #d1d5db;
+        }
+
+        .theme-toggle-login {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            color: #6366f1;
+        }
+
+        .theme-toggle-login:hover {
+            transform: scale(1.1);
+        }
+
+        body.dark-mode .theme-toggle-login {
+            background-color: #374151;
+            color: #fbbf24;
+        }
+
+        .error-shake {
+            animation: shake 0.3s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        @media (max-width: 480px) {
+            .login-box {
+                max-width: 100%;
+            }
+
+            .login-header {
+                padding: 1.5rem;
+            }
+
+            .login-body {
+                padding: 2rem;
+            }
+
+            .login-footer {
+                padding: 1rem;
+            }
+
+            .login-header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle-login" id="themeToggleLogin" title="Toggle Dark Mode">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Login Container -->
+    <div class="login-container">
+        <div class="login-box">
+            <!-- Header -->
+            <div class="login-header">
+                <svg class="logo-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="30" cy="30" r="28" fill="none" stroke="white" stroke-width="2"/>
+                    <defs>
+                        <linearGradient id="gradientLoginFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:white;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:white;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <rect x="15" y="22" width="30" height="18" rx="2" fill="none" stroke="white" stroke-width="2"/>
+                    <line x1="22" y1="40" x2="38" y2="40" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="28" y1="40" x2="26" y2="45" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                    <line x1="32" y1="40" x2="34" y2="45" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M 20 28 L 22 30 L 26 26" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M 20 33 L 22 35 L 26 31" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="28" y1="28" x2="35" y2="28" stroke="white" stroke-width="1" stroke-linecap="round"/>
+                    <line x1="28" y1="33" x2="35" y2="33" stroke="white" stroke-width="1" stroke-linecap="round"/>
+                    <path d="M 48 15 L 52 18 L 50 22 L 54 25" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <h1>Admin Access</h1>
+                <p>DevSpark Management Dashboard</p>
+            </div>
+
+            <!-- Body -->
+            <div class="login-body">
+                <!-- Message -->
+                <div id="loginMessage" class="login-message"></div>
+
+                <!-- Login Form -->
+                <form id="adminLoginForm">
+                    <div class="form-group">
+                        <label for="username">
+                            <i class="fas fa-user"></i> Username or Email
+                        </label>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username" 
+                            placeholder="Enter your username or email"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">
+                            <i class="fas fa-lock"></i> Password
+                        </label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Enter your password"
+                            required
+                        >
+                    </div>
+
+                    <div class="remember-me">
+                        <input type="checkbox" id="rememberMe" name="rememberMe">
+                        <label for="rememberMe">Remember me for 7 days</label>
+                    </div>
+
+                    <button type="submit" class="login-btn">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>Sign In</span>
+                    </button>
+
+                    <div class="forgot-password">
+                        <a href="#" onclick="alert('Contact: ayushsinghrajput643@gmail.com'); return false;">
+                            Forgot Password?
+                        </a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Footer -->
+            <div class="login-footer">
+                <p>
+                    <i class="fas fa-info-circle"></i>
+                    Admin login required to access dashboard
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Default credentials (change in production!)
+        const ADMIN_CREDENTIALS = {
+            username: 'admin',
+            email: 'ayushsinghrajput643@gmail.com',
+            password: 'admin123'
+        };
+
+        // Dark Mode
+        const themeToggleLogin = document.getElementById('themeToggleLogin');
+        
+        function loadLoginTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                updateLoginThemeIcon();
+            }
+        }
+
+        function updateLoginThemeIcon() {
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            themeToggleLogin.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+        }
+
+        themeToggleLogin.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+            updateLoginThemeIcon();
+        });
+
+        loadLoginTheme();
+
+        // Login Form Handler
+        const loginForm = document.getElementById('adminLoginForm');
+        const loginMessage = document.getElementById('loginMessage');
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const rememberMe = document.getElementById('rememberMe').checked;
+
+            // Validate
+            if (!username || !password) {
+                showLoginMessage('Please fill in all fields', 'error');
+                loginForm.classList.add('error-shake');
+                setTimeout(() => loginForm.classList.remove('error-shake'), 300);
+                return;
+            }
+
+            // Check credentials
+            const isValid = 
+                (username === ADMIN_CREDENTIALS.username || username === ADMIN_CREDENTIALS.email) &&
+                password === ADMIN_CREDENTIALS.password;
+
+            if (isValid) {
+                // Store session
+                const sessionData = {
+                    loggedIn: true,
+                    username: ADMIN_CREDENTIALS.username,
+                    loginTime: new Date().toISOString(),
+                    rememberMe: rememberMe
+                };
+
+                const storageKey = rememberMe ? 'adminSession' : 'adminSessionTemp';
+                localStorage.setItem(storageKey, JSON.stringify(sessionData));
+
+                // If remember me, set 7-day expiry
+                if (rememberMe) {
+                    const expiryDate = new Date();
+                    expiryDate.setDate(expiryDate.getDate() + 7);
+                    localStorage.setItem('adminSessionExpiry', expiryDate.toISOString());
+                }
+
+                showLoginMessage('✅ Login successful! Redirecting...', 'success');
+                
+                const submitBtn = loginForm.querySelector('button');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Redirecting...</span>';
+
+                setTimeout(() => {
+                    window.location.href = 'admin.html';
+                }, 1500);
+            } else {
+                showLoginMessage('❌ Invalid username or password', 'error');
+                loginForm.classList.add('error-shake');
+                setTimeout(() => loginForm.classList.remove('error-shake'), 300);
+                document.getElementById('password').value = '';
+            }
+        });
+
+        function showLoginMessage(message, type) {
+            loginMessage.textContent = message;
+            loginMessage.classList.remove('success', 'error');
+            loginMessage.classList.add(type);
+        }
+
+        // Check if already logged in
+        function checkSession() {
+            const adminSession = localStorage.getItem('adminSession');
+            const adminSessionTemp = localStorage.getItem('adminSessionTemp');
+            
+            if (adminSession) {
+                const expiryDate = localStorage.getItem('adminSessionExpiry');
+                if (expiryDate && new Date(expiryDate) > new Date()) {
+                    window.location.href = 'admin.html';
+                    return;
+                }
+            }
+            
+            if (adminSessionTemp) {
+                window.location.href = 'admin.html';
+                return;
+            }
+        }
+
+        // Redirect if already logged in
+        checkSession();
+
+        // Demo credentials hint
+        console.log('%cDEVSPARK ADMIN LOGIN', 'color: #6366f1; font-size: 16px; font-weight: bold;');
+        console.log('%cDemo Credentials:', 'color: #ec4899; font-weight: bold;');
+        console.log('Username: admin');
+        console.log('Password: admin123');
+        console.log('Or Email: ayushsinghrajput643@gmail.com');
+        console.log('Password: admin123');
+    </script>
+</body>
+</html>

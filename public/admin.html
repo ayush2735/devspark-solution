@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - DevSpark</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <svg class="logo-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Background circle -->
+                        <circle cx="30" cy="30" r="28" fill="none" stroke="url(#gradientBorder)" stroke-width="2"/>
+                        
+                        <!-- Gradient definition -->
+                        <defs>
+                            <linearGradient id="gradientBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="gradientFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        
+                        <!-- Computer/Website symbol -->
+                        <rect x="15" y="22" width="30" height="18" rx="2" fill="none" stroke="url(#gradientFill)" stroke-width="2"/>
+                        <!-- Monitor base -->
+                        <line x1="22" y1="40" x2="38" y2="40" stroke="url(#gradientFill)" stroke-width="2" stroke-linecap="round"/>
+                        <!-- Stand -->
+                        <line x1="28" y1="40" x2="26" y2="45" stroke="url(#gradientFill)" stroke-width="1.5" stroke-linecap="round"/>
+                        <line x1="32" y1="40" x2="34" y2="45" stroke="url(#gradientFill)" stroke-width="1.5" stroke-linecap="round"/>
+                        
+                        <!-- Website elements (checkmarks on screen) -->
+                        <path d="M 20 28 L 22 30 L 26 26" fill="none" stroke="url(#gradientFill)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M 20 33 L 22 35 L 26 31" fill="none" stroke="url(#gradientFill)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <line x1="28" y1="28" x2="35" y2="28" stroke="url(#gradientFill)" stroke-width="1" stroke-linecap="round"/>
+                        <line x1="28" y1="33" x2="35" y2="33" stroke="url(#gradientFill)" stroke-width="1" stroke-linecap="round"/>
+                        
+                        <!-- Spark/Lightning for dynamic feel -->
+                        <path d="M 48 15 L 52 18 L 50 22 L 54 25" fill="none" stroke="url(#gradientFill)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>DevSpark Admin</span>
+                </div>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+                <button class="logout-btn" id="logoutBtn" title="Logout">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Dashboard -->
+    <section class="admin-dashboard">
+        <div class="container">
+            <div class="admin-header">
+                <div>
+                    <h1>Admin Dashboard</h1>
+                    <p>Manage all client inquiries and messages</p>
+                </div>
+                <div class="admin-actions">
+                    <button id="refreshBtn" class="btn btn-primary"><i class="fas fa-sync-alt"></i> Refresh</button>
+                    <a href="index.html" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back to Website</a>
+                </div>
+            </div>
+
+            <!-- Dashboard Stats -->
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="stat-content">
+                        <h3 id="totalMessages">0</h3>
+                        <p>Total Messages</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                    <div class="stat-content">
+                        <h3 id="unreadMessages">0</h3>
+                        <p>Unread Messages</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="stat-content">
+                        <h3 id="readMessages">0</h3>
+                        <p>Read Messages</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-user"></i></div>
+                    <div class="stat-content">
+                        <h3 id="uniqueUsers">0</h3>
+                        <p>Unique Users</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters and Search -->
+            <div class="admin-filters">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search by name, email, or message...">
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all"><i class="fas fa-list"></i> All</button>
+                    <button class="filter-btn" data-filter="unread"><i class="fas fa-star"></i> Unread</button>
+                    <button class="filter-btn" data-filter="read"><i class="fas fa-check"></i> Read</button>
+                </div>
+                <button id="deleteAllBtn" class="btn btn-danger"><i class="fas fa-trash"></i> Clear All</button>
+            </div>
+
+            <!-- Messages Container -->
+            <div class="admin-content">
+                <div id="messagesContainer" class="messages-container">
+                    <div class="empty-state">
+                        <i class="fas fa-inbox"></i>
+                        <p>No messages yet</p>
+                        <small>Messages from your website contact form will appear here</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 DevSpark. All rights reserved.</p>
+            <p><a href="index.html">Back to Home</a></p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // ===========================
+        // SESSION & AUTHENTICATION
+        // ===========================
+        
+        // Check if user is logged in
+        function checkAdminSession() {
+            const adminSession = localStorage.getItem('adminSession');
+            const adminSessionTemp = localStorage.getItem('adminSessionTemp');
+            const sessionExpiry = localStorage.getItem('adminSessionExpiry');
+
+            // Check permanent session
+            if (adminSession) {
+                if (sessionExpiry) {
+                    const expiryDate = new Date(sessionExpiry);
+                    if (expiryDate < new Date()) {
+                        // Session expired
+                        localStorage.removeItem('adminSession');
+                        localStorage.removeItem('adminSessionExpiry');
+                        redirectToLogin();
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            // Check temporary session
+            if (adminSessionTemp) {
+                return true;
+            }
+
+            // Not logged in
+            redirectToLogin();
+            return false;
+        }
+
+        function redirectToLogin() {
+            window.location.href = 'admin-login.html';
+        }
+
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('adminSession');
+                localStorage.removeItem('adminSessionTemp');
+                localStorage.removeItem('adminSessionExpiry');
+                
+                // Show logout message
+                const logoutDiv = document.createElement('div');
+                logoutDiv.style.cssText = `
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: white;
+                    padding: 2rem;
+                    border-radius: 10px;
+                    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                    z-index: 9999;
+                    text-align: center;
+                `;
+                logoutDiv.innerHTML = `
+                    <i class="fas fa-sign-out-alt" style="font-size: 2rem; color: #6366f1; margin-bottom: 1rem; display: block;"></i>
+                    <h3>Logged Out Successfully</h3>
+                    <p>Redirecting to login page...</p>
+                `;
+                document.body.appendChild(logoutDiv);
+                
+                setTimeout(() => redirectToLogin(), 2000);
+            }
+        });
+
+        // Check session on page load
+        if (!checkAdminSession()) {
+            // Prevent further execution if not logged in
+            throw new Error('Not authenticated');
+        }
+
+        // ===========================
+        // MESSAGE MANAGEMENT
+        // ===========================
+        let filteredMessages = [];
+        let readMessages = new Set(JSON.parse(localStorage.getItem('readMessages') || '[]'));
+
+        // Load messages from API
+        async function loadMessages() {
+            try {
+                const response = await fetch('/api/messages');
+                const messages = await response.json();
+                allMessages = messages;
+                filteredMessages = messages;
+                updateStats();
+                renderMessages();
+            } catch (error) {
+                console.error('Error loading messages:', error);
+                document.getElementById('messagesContainer').innerHTML = 
+                    '<div class="error-state"><i class="fas fa-exclamation-circle"></i><p>Error loading messages</p></div>';
+            }
+        }
+
+        // Update dashboard statistics
+        function updateStats() {
+            const total = allMessages.length;
+            const read = allMessages.filter(msg => readMessages.has(msg._id || msg.email)).length;
+            const unread = total - read;
+            const unique = new Set(allMessages.map(msg => msg.email)).size;
+
+            document.getElementById('totalMessages').textContent = total;
+            document.getElementById('unreadMessages').textContent = unread;
+            document.getElementById('readMessages').textContent = read;
+            document.getElementById('uniqueUsers').textContent = unique;
+        }
+
+        // Render messages
+        function renderMessages() {
+            const container = document.getElementById('messagesContainer');
+            
+            if (filteredMessages.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-inbox"></i>
+                        <p>No messages found</p>
+                        <small>Try adjusting your filters or search terms</small>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = filteredMessages.map(msg => {
+                const msgId = msg._id || msg.email;
+                const isRead = readMessages.has(msgId);
+                const timestamp = new Date(msg.createdAt).toLocaleString();
+                
+                return `
+                    <div class="message-card ${isRead ? 'read' : 'unread'}" data-id="${msgId}">
+                        <div class="message-header">
+                            <div class="message-title">
+                                <h3>${escapeHtml(msg.name)}</h3>
+                                <span class="message-badge ${isRead ? 'badge-read' : 'badge-unread'}">
+                                    ${isRead ? '<i class="fas fa-check"></i> Read' : '<i class="fas fa-star"></i> Unread'}
+                                </span>
+                            </div>
+                            <div class="message-actions">
+                                <button class="action-btn mark-read" title="Mark as ${isRead ? 'unread' : 'read'}">
+                                    <i class="fas fa-${isRead ? 'envelope' : 'envelope-open'}"></i>
+                                </button>
+                                <button class="action-btn delete-msg" title="Delete message">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="message-body">
+                            <p><strong><i class="fas fa-envelope"></i> Email:</strong> <a href="mailto:${escapeHtml(msg.email)}">${escapeHtml(msg.email)}</a></p>
+                            ${msg.phone ? `<p><strong><i class="fas fa-phone"></i> Phone:</strong> <a href="tel:${escapeHtml(msg.phone)}">${escapeHtml(msg.phone)}</a></p>` : ''}
+                            ${msg.service ? `<p><strong><i class="fas fa-briefcase"></i> Service:</strong> ${escapeHtml(msg.service)}</p>` : ''}
+                            <div class="message-content">
+                                <strong><i class="fas fa-comment"></i> Message:</strong>
+                                <p>${escapeHtml(msg.message).replace(/\n/g, '<br>')}</p>
+                            </div>
+                            <p class="message-time"><i class="fas fa-clock"></i> ${timestamp}</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Add event listeners to message cards
+            document.querySelectorAll('.mark-read').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const msgCard = e.target.closest('.message-card');
+                    const msgId = msgCard.dataset.id;
+                    toggleReadStatus(msgId, msgCard);
+                });
+            });
+
+            document.querySelectorAll('.delete-msg').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const msgCard = e.target.closest('.message-card');
+                    const msgId = msgCard.dataset.id;
+                    deleteMessage(msgId, msgCard);
+                });
+            });
+        }
+
+        // Toggle read status
+        function toggleReadStatus(msgId, msgCard) {
+            if (readMessages.has(msgId)) {
+                readMessages.delete(msgId);
+            } else {
+                readMessages.add(msgId);
+            }
+            localStorage.setItem('readMessages', JSON.stringify([...readMessages]));
+            updateStats();
+            renderMessages();
+        }
+
+        // Delete message
+        function deleteMessage(msgId, msgCard) {
+            if (confirm('Are you sure you want to delete this message?')) {
+                allMessages = allMessages.filter(msg => (msg._id || msg.email) !== msgId);
+                readMessages.delete(msgId);
+                localStorage.setItem('readMessages', JSON.stringify([...readMessages]));
+                updateStats();
+                applyFilters();
+            }
+        }
+
+        // Search functionality
+        function handleSearch(query) {
+            const searchTerm = query.toLowerCase();
+            filteredMessages = allMessages.filter(msg => 
+                msg.name.toLowerCase().includes(searchTerm) ||
+                msg.email.toLowerCase().includes(searchTerm) ||
+                msg.message.toLowerCase().includes(searchTerm)
+            );
+            renderMessages();
+        }
+
+        // Filter functionality
+        function applyFilters() {
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+            
+            filteredMessages = allMessages.filter(msg => {
+                const msgId = msg._id || msg.email;
+                if (activeFilter === 'unread') return !readMessages.has(msgId);
+                if (activeFilter === 'read') return readMessages.has(msgId);
+                return true;
+            });
+            
+            renderMessages();
+        }
+
+        // Escape HTML to prevent XSS
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Event listeners
+        document.getElementById('searchInput').addEventListener('keyup', (e) => {
+            handleSearch(e.target.value);
+        });
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                applyFilters();
+            });
+        });
+
+        document.getElementById('refreshBtn').addEventListener('click', () => {
+            loadMessages();
+        });
+
+        document.getElementById('deleteAllBtn').addEventListener('click', () => {
+            if (confirm('Are you sure you want to delete ALL messages? This cannot be undone.')) {
+                allMessages = [];
+                readMessages.clear();
+                localStorage.setItem('readMessages', JSON.stringify([]));
+                updateStats();
+                renderMessages();
+            }
+        });
+
+        // Load messages on page load
+        document.addEventListener('DOMContentLoaded', loadMessages);
+
+        // Auto-refresh every 30 seconds
+        setInterval(loadMessages, 30000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevSpark - Web Development & Digital Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <svg class="logo-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Background circle -->
+                        <circle cx="30" cy="30" r="28" fill="none" stroke="url(#gradientBorder)" stroke-width="2"/>
+                        
+                        <!-- Gradient definition -->
+                        <defs>
+                            <linearGradient id="gradientBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+                            </linearGradient>
+                            <linearGradient id="gradientFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        
+                        <!-- Computer/Website symbol -->
+                        <rect x="15" y="22" width="30" height="18" rx="2" fill="none" stroke="url(#gradientFill)" stroke-width="2"/>
+                        <!-- Monitor base -->
+                        <line x1="22" y1="40" x2="38" y2="40" stroke="url(#gradientFill)" stroke-width="2" stroke-linecap="round"/>
+                        <!-- Stand -->
+                        <line x1="28" y1="40" x2="26" y2="45" stroke="url(#gradientFill)" stroke-width="1.5" stroke-linecap="round"/>
+                        <line x1="32" y1="40" x2="34" y2="45" stroke="url(#gradientFill)" stroke-width="1.5" stroke-linecap="round"/>
+                        
+                        <!-- Website elements (checkmarks on screen) -->
+                        <path d="M 20 28 L 22 30 L 26 26" fill="none" stroke="url(#gradientFill)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M 20 33 L 22 35 L 26 31" fill="none" stroke="url(#gradientFill)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <line x1="28" y1="28" x2="35" y2="28" stroke="url(#gradientFill)" stroke-width="1" stroke-linecap="round"/>
+                        <line x1="28" y1="33" x2="35" y2="33" stroke="url(#gradientFill)" stroke-width="1" stroke-linecap="round"/>
+                        
+                        <!-- Spark/Lightning for dynamic feel -->
+                        <path d="M 48 15 L 52 18 L 50 22 L 54 25" fill="none" stroke="url(#gradientFill)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>DevSpark</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#services" class="nav-link dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#web-design" class="dropdown-link">Web Design</a></li>
+                            <li><a href="#web-dev" class="dropdown-link">Web Development</a></li>
+                            <li><a href="#mobile-apps" class="dropdown-link">Mobile Apps</a></li>
+                            <li><a href="#seo" class="dropdown-link">SEO Optimization</a></li>
+                            <li><a href="#maintenance" class="dropdown-link">Maintenance & Support</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                    <li><a href="#tech-stack" class="nav-link">Technologies</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
+                    <a href="#contact" class="cta-small">Get Started</a>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Transform Your Ideas Into Reality</h1>
+                <p>Professional Web Development & Digital Solutions for Modern Businesses</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="cta-btn primary">Start Your Project</a>
+                    <a href="#portfolio" class="cta-btn secondary">View Our Work</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Services</h2>
+                <p>Comprehensive digital solutions tailored to your business needs</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-pencil-ruler"></i></div>
+                    <h3>Web Design</h3>
+                    <p>Beautiful, modern designs that capture your brand essence and engage your audience. Responsive layouts optimized for all devices.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> UI/UX Design</li>
+                        <li><i class="fas fa-check"></i> Responsive Layouts</li>
+                        <li><i class="fas fa-check"></i> Brand Identity</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-code"></i></div>
+                    <h3>Web Development</h3>
+                    <p>Powerful, scalable web applications built with latest technologies. From simple websites to complex enterprise solutions.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Full Stack Development</li>
+                        <li><i class="fas fa-check"></i> API Development</li>
+                        <li><i class="fas fa-check"></i> Database Design</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>Mobile Apps</h3>
+                    <p>Cross-platform mobile applications for iOS and Android. Native and hybrid solutions for maximum performance.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Native Development</li>
+                        <li><i class="fas fa-check"></i> Hybrid Apps</li>
+                        <li><i class="fas fa-check"></i> App Store Deployment</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-search"></i></div>
+                    <h3>SEO Optimization</h3>
+                    <p>Boost your online visibility and reach. Comprehensive SEO strategies to rank higher on search engines.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> On-Page SEO</li>
+                        <li><i class="fas fa-check"></i> Technical SEO</li>
+                        <li><i class="fas fa-check"></i> Link Building</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-tools"></i></div>
+                    <h3>Maintenance & Support</h3>
+                    <p>Ongoing support and maintenance to keep your digital assets running smoothly. 24/7 monitoring and updates.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Bug Fixes</li>
+                        <li><i class="fas fa-check"></i> Performance Optimization</li>
+                        <li><i class="fas fa-check"></i> Security Updates</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Digital Marketing</h3>
+                    <p>Strategic digital marketing to grow your business. Social media, content, and paid advertising campaigns.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check"></i> Social Media Marketing</li>
+                        <li><i class="fas fa-check"></i> Content Strategy</li>
+                        <li><i class="fas fa-check"></i> Analytics & Reporting</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Portfolio</h2>
+                <p>Showcase of our latest projects and success stories</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>E-Commerce Platform</h3>
+                    <p>Full-featured online store with payment integration</p>
+                    <span class="portfolio-tag">Web Development</span>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <h3>Healthcare Management</h3>
+                    <p>Patient management system with appointment scheduling</p>
+                    <span class="portfolio-tag">Full Stack</span>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>EdTech Platform</h3>
+                    <p>Learning management system with video streaming</p>
+                    <span class="portfolio-tag">Web App</span>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Restaurant App</h3>
+                    <p>Mobile app for food ordering and delivery tracking</p>
+                    <span class="portfolio-tag">Mobile App</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology & Requirements Section -->
+    <section id="tech-stack" class="tech-stack">
+        <div class="container">
+            <div class="section-header">
+                <h2>Technologies & Requirements</h2>
+                <p>Modern stack and tools we use to build professional websites</p>
+            </div>
+            
+            <div class="tech-sections">
+                <div class="tech-category">
+                    <h3><i class="fas fa-layer-group"></i> Frontend Technologies</h3>
+                    <div class="tech-items">
+                        <span class="tech-badge">HTML5</span>
+                        <span class="tech-badge">CSS3</span>
+                        <span class="tech-badge">JavaScript</span>
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">Vue.js</span>
+                        <span class="tech-badge">Bootstrap</span>
+                        <span class="tech-badge">Tailwind CSS</span>
+                        <span class="tech-badge">Responsive Design</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h3><i class="fas fa-server"></i> Backend Technologies</h3>
+                    <div class="tech-items">
+                        <span class="tech-badge">Node.js</span>
+                        <span class="tech-badge">Express.js</span>
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">Django</span>
+                        <span class="tech-badge">PHP</span>
+                        <span class="tech-badge">RESTful APIs</span>
+                        <span class="tech-badge">GraphQL</span>
+                        <span class="tech-badge">Microservices</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h3><i class="fas fa-database"></i> Database & Storage</h3>
+                    <div class="tech-items">
+                        <span class="tech-badge">MongoDB</span>
+                        <span class="tech-badge">MySQL</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                        <span class="tech-badge">Firebase</span>
+                        <span class="tech-badge">AWS S3</span>
+                        <span class="tech-badge">Redis</span>
+                        <span class="tech-badge">Oracle DB</span>
+                        <span class="tech-badge">SQL Server</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h3><i class="fas fa-cloud"></i> Deployment & Infrastructure</h3>
+                    <div class="tech-items">
+                        <span class="tech-badge">AWS</span>
+                        <span class="tech-badge">Azure</span>
+                        <span class="tech-badge">Google Cloud</span>
+                        <span class="tech-badge">Heroku</span>
+                        <span class="tech-badge">Vercel</span>
+                        <span class="tech-badge">Docker</span>
+                        <span class="tech-badge">Kubernetes</span>
+                        <span class="tech-badge">CI/CD</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h3><i class="fas fa-tools"></i> Development Tools</h3>
+                    <div class="tech-items">
+                        <span class="tech-badge">Git/GitHub</span>
+                        <span class="tech-badge">VS Code</span>
+                        <span class="tech-badge">Webpack</span>
+                        <span class="tech-badge">Babel</span>
+                        <span class="tech-badge">npm/yarn</span>
+                        <span class="tech-badge">Jest</span>
+                        <span class="tech-badge">Postman</span>
+                        <span class="tech-badge">Jira</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h3><i class="fas fa-shield-alt"></i> Security & Performance</h3>
+                    <div class="tech-items">
+                        <span class="tech-badge">SSL/TLS</span>
+                        <span class="tech-badge">OAuth 2.0</span>
+                        <span class="tech-badge">JWT Auth</span>
+                        <span class="tech-badge">CORS</span>
+                        <span class="tech-badge">CDN</span>
+                        <span class="tech-badge">Caching</span>
+                        <span class="tech-badge">SEO Optimization</span>
+                        <span class="tech-badge">Performance Monitoring</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="requirements-box">
+                <h3>Website Requirements We Follow</h3>
+                <div class="requirements-grid">
+                    <div class="requirement-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h4>Mobile Responsive</h4>
+                        <p>Works seamlessly on all devices - desktop, tablet, mobile</p>
+                    </div>
+                    <div class="requirement-item">
+                        <i class="fas fa-bolt"></i>
+                        <h4>Fast Performance</h4>
+                        <p>Optimized loading times and smooth user experience</p>
+                    </div>
+                    <div class="requirement-item">
+                        <i class="fas fa-search"></i>
+                        <h4>SEO Friendly</h4>
+                        <p>Proper meta tags, structured data, and search optimization</p>
+                    </div>
+                    <div class="requirement-item">
+                        <i class="fas fa-lock"></i>
+                        <h4>Secure & Safe</h4>
+                        <p>SSL certificates, data encryption, and security best practices</p>
+                    </div>
+                    <div class="requirement-item">
+                        <i class="fas fa-paint-brush"></i>
+                        <h4>Professional Design</h4>
+                        <p>Modern UI/UX with consistent branding and visual hierarchy</p>
+                    </div>
+                    <div class="requirement-item">
+                        <i class="fas fa-cog"></i>
+                        <h4>Easy Maintenance</h4>
+                        <p>Clean code, documentation, and admin dashboard for updates</p>
+                    </div>
+                    <div class="requirement-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <h4>Analytics Ready</h4>
+                        <p>Google Analytics, tracking, and performance metrics</p>
+                    </div>
+                    <div class="requirement-item">
+                        <i class="fas fa-universal-access"></i>
+                        <h4>Accessible</h4>
+                        <p>WCAG compliant, screen reader friendly, keyboard navigation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-wrapper">
+                <div class="about-content">
+                    <h2>About DevSpark</h2>
+                    <p>DevSpark is your trusted partner for professional client website solutions. Founded with a passion for excellence, we specialize in delivering high-quality, custom websites tailored to your business needs. Our expert team combines creativity, technical expertise, and industry best practices to bring your vision to life.</p>
+                    
+                    <div class="about-features">
+                        <div class="feature">
+                            <i class="fas fa-award"></i>
+                            <h4>Client-Focused</h4>
+                            <p>Your success is our mission - dedicated to your growth</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-rocket"></i>
+                            <h4>Custom Solutions</h4>
+                            <p>Tailored websites for your unique business requirements</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-code"></i>
+                            <h4>Quality Code</h4>
+                            <p>Built with clean, professional, maintainable code</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-headset"></i>
+                            <h4>Full Support</h4>
+                            <p>Ongoing support and maintenance for your website</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h2>Get in Touch</h2>
+                    <p>Have a question or ready to start your project? We'd love to hear from you.</p>
+                    
+                    <div class="contact-details">
+                        <div class="detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Address</h4>
+                                <p>India</p>
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+91 9369635323</p>
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>ayushsinghrajput643@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="#" class="social-btn"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="Your Phone (Optional)">
+                    </div>
+                    <div class="form-group">
+                        <select name="service" required>
+                            <option value="">Select Service</option>
+                            <option value="web-design">Web Design</option>
+                            <option value="web-dev">Web Development</option>
+                            <option value="mobile-app">Mobile App</option>
+                            <option value="seo">SEO Optimization</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Tell us about your project" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+            <p id="formMessage" class="form-message"></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>DevSpark</h4>
+                    <p>Professional client website solutions provider. Transforming businesses through innovative web and digital services.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">Web Design</a></li>
+                        <li><a href="#services">Web Development</a></li>
+                        <li><a href="#services">Mobile Apps</a></li>
+                        <li><a href="#services">SEO Optimization</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +91 9369635323</li>
+                        <li><i class="fas fa-envelope"></i> ayushsinghrajput643@gmail.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> India</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DevSpark. All rights reserved. | <a href="admin.html">Admin Dashboard</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
