@@ -5,7 +5,7 @@ A modern, full-stack web platform for a web development agency. Features a respo
 ## Project Structure
 
 ```
-devspark-solution/
+Techspark-solution/
 ├── public/                     # Frontend (Client Side)
 │   ├── index.html              # Main website (Home, Services, About, Contact)
 │   ├── admin.html              # Admin dashboard (view messages)
