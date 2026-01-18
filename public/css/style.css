@@ -1732,3 +1732,479 @@ body.dark-mode .logout-btn {
         font-size: 1.1rem;
     }
 }
+
+/* ===========================
+   ADMIN DASHBOARD STYLING
+   =========================== */
+
+/* Admin Header/Navbar */
+.admin-navbar {
+    background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+    color: white;
+    padding: 1.5rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.2);
+}
+
+.admin-nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.admin-branding {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-grow: 1;
+}
+
+.admin-branding .logo-svg {
+    width: 50px;
+    height: 50px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.brand-text h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.brand-text p {
+    margin: 0;
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+.admin-nav-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.admin-nav-actions .logout-btn span {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .admin-nav-actions .logout-btn span {
+        display: inline;
+    }
+}
+
+/* Tab Navigation */
+.admin-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--border-color);
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    padding: 1rem 1.5rem;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.tab-btn:hover {
+    color: var(--primary-color);
+    background: rgba(99, 102, 241, 0.05);
+}
+
+.tab-btn.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Admin Header */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.header-intro h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+}
+
+.header-intro p {
+    margin: 0.5rem 0 0 0;
+    color: var(--text-secondary);
+}
+
+.admin-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Email Status Container */
+.email-status-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.email-config-box,
+.email-logs-box {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.email-config-box h3,
+.email-logs-box h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.status-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--bg-primary);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.status-item i {
+    font-size: 1.5rem;
+    min-width: 30px;
+}
+
+.status-success {
+    color: #10b981;
+}
+
+.status-error {
+    color: #ef4444;
+}
+
+.status-info {
+    color: #3b82f6;
+}
+
+.status-item h4 {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.status-item p {
+    margin: 0.3rem 0 0 0;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* Email Logs */
+.email-logs {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.email-log-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 0.8rem;
+    align-items: center;
+    background: var(--bg-primary);
+}
+
+.log-status {
+    min-width: 40px;
+}
+
+.log-status i {
+    font-size: 1.3rem;
+}
+
+.log-content {
+    flex-grow: 1;
+}
+
+.log-content p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.log-content small {
+    display: block;
+    color: var(--text-secondary);
+    margin-top: 0.3rem;
+}
+
+.log-type {
+    min-width: 80px;
+    text-align: right;
+}
+
+.badge-success {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+.badge-error {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+}
+
+/* Settings Container */
+.settings-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.settings-section {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.settings-section h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.settings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.setting-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.setting-item label {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.setting-item input[type="text"],
+.setting-item input[type="email"] {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+.setting-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.setting-item small {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.settings-info {
+    background: rgba(99, 102, 241, 0.05);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.settings-info p {
+    margin: 0.8rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.settings-info i {
+    color: var(--primary-color);
+    min-width: 20px;
+}
+
+.settings-info strong {
+    color: var(--text-primary);
+}
+
+/* Admin Footer */
+.admin-footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    padding: 2rem 0;
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.admin-footer p {
+    margin: 0.5rem 0;
+    color: var(--text-secondary);
+}
+
+.admin-footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.admin-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Admin */
+@media (max-width: 768px) {
+    .admin-navbar {
+        padding: 1rem 0;
+    }
+
+    .admin-branding {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .admin-branding .logo-svg {
+        width: 40px;
+        height: 40px;
+    }
+
+    .brand-text h1 {
+        font-size: 1.2rem;
+    }
+
+    .admin-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .admin-actions {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .admin-tabs {
+        gap: 0;
+        overflow-x: auto;
+    }
+
+    .tab-btn {
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+
+    .email-status-container {
+        grid-template-columns: 1fr;
+    }
+
+    .settings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .status-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .email-log-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .log-type {
+        text-align: center;
+        min-width: auto;
+    }
+
+    .logout-btn {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-nav-wrapper {
+        gap: 1rem;
+    }
+
+    .brand-text {
+        display: none;
+    }
+
+    .admin-nav-actions {
+        gap: 0.5rem;
+    }
+
+    .admin-header {
+        padding: 1rem;
+    }
+
+    .tab-btn {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    .email-config-box,
+    .email-logs-box {
+        padding: 1rem;
+    }
+
+    .settings-section {
+        padding: 1rem;
+    }
+}

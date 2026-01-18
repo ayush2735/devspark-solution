@@ -9,16 +9,13 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
+    <!-- Admin Header with Company Branding -->
+    <header class="admin-navbar">
         <div class="container">
-            <div class="nav-wrapper">
-                <div class="logo">
+            <div class="admin-nav-wrapper">
+                <div class="admin-branding">
                     <svg class="logo-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Background circle -->
                         <circle cx="30" cy="30" r="28" fill="none" stroke="url(#gradientBorder)" stroke-width="2"/>
-                        
-                        <!-- Gradient definition -->
                         <defs>
                             <linearGradient id="gradientBorder" x1="0%" y1="0%" x2="100%" y2="100%">
                                 <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
@@ -29,41 +26,39 @@
                                 <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
                             </linearGradient>
                         </defs>
-                        
-                        <!-- Computer/Website symbol -->
                         <rect x="15" y="22" width="30" height="18" rx="2" fill="none" stroke="url(#gradientFill)" stroke-width="2"/>
-                        <!-- Monitor base -->
                         <line x1="22" y1="40" x2="38" y2="40" stroke="url(#gradientFill)" stroke-width="2" stroke-linecap="round"/>
-                        <!-- Stand -->
                         <line x1="28" y1="40" x2="26" y2="45" stroke="url(#gradientFill)" stroke-width="1.5" stroke-linecap="round"/>
                         <line x1="32" y1="40" x2="34" y2="45" stroke="url(#gradientFill)" stroke-width="1.5" stroke-linecap="round"/>
-                        
-                        <!-- Website elements (checkmarks on screen) -->
                         <path d="M 20 28 L 22 30 L 26 26" fill="none" stroke="url(#gradientFill)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M 20 33 L 22 35 L 26 31" fill="none" stroke="url(#gradientFill)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                         <line x1="28" y1="28" x2="35" y2="28" stroke="url(#gradientFill)" stroke-width="1" stroke-linecap="round"/>
                         <line x1="28" y1="33" x2="35" y2="33" stroke="url(#gradientFill)" stroke-width="1" stroke-linecap="round"/>
-                        
-                        <!-- Spark/Lightning for dynamic feel -->
                         <path d="M 48 15 L 52 18 L 50 22 L 54 25" fill="none" stroke="url(#gradientFill)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                    <span>DevSpark Admin</span>
+                    <div class="brand-text">
+                        <h1>DevSpark</h1>
+                        <p>Administration Dashboard</p>
+                    </div>
                 </div>
-                <button class="theme-toggle" id="themeToggle">🌙</button>
-                <button class="logout-btn" id="logoutBtn" title="Logout">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </button>
+                <div class="admin-nav-actions">
+                    <button class="theme-toggle" id="themeToggle" title="Toggle Dark Mode"><i class="fas fa-moon"></i></button>
+                    <button class="logout-btn" id="logoutBtn" title="Logout">
+                        <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+                    </button>
+                </div>
             </div>
         </div>
-    </nav>
+    </header>
 
     <!-- Admin Dashboard -->
     <section class="admin-dashboard">
         <div class="container">
+            <!-- Dashboard Header -->
             <div class="admin-header">
-                <div>
-                    <h1>Admin Dashboard</h1>
-                    <p>Manage all client inquiries and messages</p>
+                <div class="header-intro">
+                    <h2><i class="fas fa-chart-line"></i> Dashboard Overview</h2>
+                    <p>Monitor all client inquiries and email communications</p>
                 </div>
                 <div class="admin-actions">
                     <button id="refreshBtn" class="btn btn-primary"><i class="fas fa-sync-alt"></i> Refresh</button>
@@ -71,7 +66,7 @@
                 </div>
             </div>
 
-            <!-- Dashboard Stats -->
+            <!-- Quick Stats -->
             <div class="dashboard-stats">
                 <div class="stat-card">
                     <div class="stat-icon"><i class="fas fa-envelope"></i></div>
@@ -95,35 +90,138 @@
                     </div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-icon"><i class="fas fa-user"></i></div>
+                    <div class="stat-icon"><i class="fas fa-envelope-circle-check"></i></div>
                     <div class="stat-content">
-                        <h3 id="uniqueUsers">0</h3>
-                        <p>Unique Users</p>
+                        <h3 id="emailsSent">0</h3>
+                        <p>Emails Sent</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Filters and Search -->
-            <div class="admin-filters">
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="searchInput" placeholder="Search by name, email, or message...">
-                </div>
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all"><i class="fas fa-list"></i> All</button>
-                    <button class="filter-btn" data-filter="unread"><i class="fas fa-star"></i> Unread</button>
-                    <button class="filter-btn" data-filter="read"><i class="fas fa-check"></i> Read</button>
-                </div>
-                <button id="deleteAllBtn" class="btn btn-danger"><i class="fas fa-trash"></i> Clear All</button>
+            <!-- Tabs Navigation -->
+            <div class="admin-tabs">
+                <button class="tab-btn active" data-tab="messages"><i class="fas fa-inbox"></i> Messages</button>
+                <button class="tab-btn" data-tab="email-status"><i class="fas fa-envelope"></i> Email Status</button>
+                <button class="tab-btn" data-tab="settings"><i class="fas fa-cog"></i> Settings</button>
             </div>
 
-            <!-- Messages Container -->
-            <div class="admin-content">
-                <div id="messagesContainer" class="messages-container">
-                    <div class="empty-state">
-                        <i class="fas fa-inbox"></i>
-                        <p>No messages yet</p>
-                        <small>Messages from your website contact form will appear here</small>
+            <!-- Messages Tab -->
+            <div id="messages-tab" class="tab-content active">
+                <!-- Filters and Search -->
+                <div class="admin-filters">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search by name, email, or message...">
+                    </div>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all"><i class="fas fa-list"></i> All</button>
+                        <button class="filter-btn" data-filter="unread"><i class="fas fa-star"></i> Unread</button>
+                        <button class="filter-btn" data-filter="read"><i class="fas fa-check"></i> Read</button>
+                    </div>
+                    <button id="deleteAllBtn" class="btn btn-danger"><i class="fas fa-trash"></i> Clear All</button>
+                </div>
+
+                <!-- Messages Container -->
+                <div class="admin-content">
+                    <div id="messagesContainer" class="messages-container">
+                        <div class="empty-state">
+                            <i class="fas fa-inbox"></i>
+                            <p>No messages yet</p>
+                            <small>Messages from your website contact form will appear here</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Email Status Tab -->
+            <div id="email-status-tab" class="tab-content">
+                <div class="email-status-container">
+                    <div class="email-config-box">
+                        <h3><i class="fas fa-envelope-circle-check"></i> Email System Status</h3>
+                        <div class="status-grid">
+                            <div class="status-item">
+                                <i class="fas fa-check-circle status-success"></i>
+                                <div>
+                                    <h4>SMTP Configuration</h4>
+                                    <p>Gmail SMTP Configured</p>
+                                </div>
+                            </div>
+                            <div class="status-item">
+                                <i class="fas fa-envelope status-info"></i>
+                                <div>
+                                    <h4>Auto-Responses</h4>
+                                    <p>Enabled</p>
+                                </div>
+                            </div>
+                            <div class="status-item">
+                                <i class="fas fa-bolt status-success"></i>
+                                <div>
+                                    <h4>Async Processing</h4>
+                                    <p>Active - Non-blocking</p>
+                                </div>
+                            </div>
+                            <div class="status-item">
+                                <i class="fas fa-database status-success"></i>
+                                <div>
+                                    <h4>Message Storage</h4>
+                                    <p>MongoDB Ready</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="email-logs-box">
+                        <h3><i class="fas fa-history"></i> Recent Email Activity</h3>
+                        <div id="emailLogsContainer" class="email-logs">
+                            <div class="empty-state">
+                                <i class="fas fa-inbox"></i>
+                                <p>No email activity yet</p>
+                                <small>Email logs will appear here when messages are sent</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div id="settings-tab" class="tab-content">
+                <div class="settings-container">
+                    <div class="settings-section">
+                        <h3><i class="fas fa-envelope"></i> Email Settings</h3>
+                        <div class="settings-grid">
+                            <div class="setting-item">
+                                <label>Admin Email:</label>
+                                <input type="email" id="adminEmail" placeholder="admin@devspark.com" readonly>
+                                <small>Email address for receiving notifications</small>
+                            </div>
+                            <div class="setting-item">
+                                <label>Company Name:</label>
+                                <input type="text" id="companyName" value="DevSpark" placeholder="DevSpark">
+                                <small>Company name in email templates</small>
+                            </div>
+                            <div class="setting-item">
+                                <label>Support Email:</label>
+                                <input type="email" id="supportEmail" placeholder="support@devspark.com" readonly>
+                                <small>Support email address for user confirmations</small>
+                            </div>
+                            <div class="setting-item">
+                                <label>Auto-Reply Enabled:</label>
+                                <input type="checkbox" id="autoReplyCheck" checked>
+                                <small>Enable automatic email responses to users</small>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" id="saveSettingsBtn"><i class="fas fa-save"></i> Save Settings</button>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3><i class="fas fa-lock"></i> Security</h3>
+                        <div class="settings-info">
+                            <p><i class="fas fa-check-circle"></i> <strong>Session Active:</strong> <span id="sessionTime">--</span></p>
+                            <p><i class="fas fa-calendar"></i> <strong>Last Activity:</strong> <span id="lastActivity">--</span></p>
+                            <p><i class="fas fa-database"></i> <strong>Data Storage:</strong> MongoDB</p>
+                            <p><i class="fas fa-shield-alt"></i> <strong>Encryption:</strong> SMTP TLS Enabled</p>
+                        </div>
+                        <button class="btn btn-danger" id="clearDataBtn"><i class="fas fa-eraser"></i> Clear Session Data</button>
                     </div>
                 </div>
             </div>
@@ -131,10 +229,10 @@
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="admin-footer">
         <div class="container">
-            <p>&copy; 2024 DevSpark. All rights reserved.</p>
-            <p><a href="index.html">Back to Home</a></p>
+            <p>&copy; 2024 DevSpark - Administration Dashboard. All rights reserved.</p>
+            <p><a href="index.html"><i class="fas fa-globe"></i> Back to Website</a></p>
         </div>
     </footer>
 
@@ -179,6 +277,16 @@
             window.location.href = 'admin-login.html';
         }
 
+        // Update session time display
+        function updateSessionTime() {
+            const sessionStart = localStorage.getItem('adminSessionStart');
+            if (sessionStart) {
+                const startDate = new Date(sessionStart);
+                document.getElementById('sessionTime').textContent = startDate.toLocaleString();
+                document.getElementById('lastActivity').textContent = new Date().toLocaleTimeString();
+            }
+        }
+
         // Logout functionality
         document.getElementById('logoutBtn').addEventListener('click', () => {
             if (confirm('Are you sure you want to logout?')) {
@@ -193,12 +301,13 @@
                     top: 50%;
                     left: 50%;
                     transform: translate(-50%, -50%);
-                    background: white;
+                    background: var(--bg-secondary);
                     padding: 2rem;
                     border-radius: 10px;
                     box-shadow: 0 20px 60px rgba(0,0,0,0.3);
                     z-index: 9999;
                     text-align: center;
+                    border: 1px solid var(--border-color);
                 `;
                 logoutDiv.innerHTML = `
                     <i class="fas fa-sign-out-alt" style="font-size: 2rem; color: #6366f1; margin-bottom: 1rem; display: block;"></i>
@@ -213,23 +322,24 @@
 
         // Check session on page load
         if (!checkAdminSession()) {
-            // Prevent further execution if not logged in
             throw new Error('Not authenticated');
         }
 
         // ===========================
         // MESSAGE MANAGEMENT
         // ===========================
+        let allMessages = [];
         let filteredMessages = [];
         let readMessages = new Set(JSON.parse(localStorage.getItem('readMessages') || '[]'));
+        let emailLogs = JSON.parse(localStorage.getItem('emailLogs') || '[]');
 
         // Load messages from API
         async function loadMessages() {
             try {
                 const response = await fetch('/api/messages');
                 const messages = await response.json();
-                allMessages = messages;
-                filteredMessages = messages;
+                allMessages = Array.isArray(messages) ? messages : [];
+                filteredMessages = allMessages;
                 updateStats();
                 renderMessages();
             } catch (error) {
@@ -245,11 +355,12 @@
             const read = allMessages.filter(msg => readMessages.has(msg._id || msg.email)).length;
             const unread = total - read;
             const unique = new Set(allMessages.map(msg => msg.email)).size;
+            const emailsSent = emailLogs.filter(log => log.type === 'sent').length;
 
             document.getElementById('totalMessages').textContent = total;
             document.getElementById('unreadMessages').textContent = unread;
             document.getElementById('readMessages').textContent = read;
-            document.getElementById('uniqueUsers').textContent = unique;
+            document.getElementById('emailsSent').textContent = emailsSent;
         }
 
         // Render messages
@@ -270,7 +381,7 @@
             container.innerHTML = filteredMessages.map(msg => {
                 const msgId = msg._id || msg.email;
                 const isRead = readMessages.has(msgId);
-                const timestamp = new Date(msg.createdAt).toLocaleString();
+                const timestamp = new Date(msg.createdAt || msg.timestamp).toLocaleString();
                 
                 return `
                     <div class="message-card ${isRead ? 'read' : 'unread'}" data-id="${msgId}">
@@ -322,6 +433,46 @@
             });
         }
 
+        // Render email logs
+        function renderEmailLogs() {
+            const container = document.getElementById('emailLogsContainer');
+            
+            if (emailLogs.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-inbox"></i>
+                        <p>No email activity yet</p>
+                        <small>Email logs will appear here when messages are sent</small>
+                    </div>
+                `;
+                return;
+            }
+
+            // Show last 10 emails
+            const recentLogs = emailLogs.slice(-10).reverse();
+            container.innerHTML = recentLogs.map(log => {
+                const statusIcon = log.type === 'sent' ? 'check-circle' : 'exclamation-circle';
+                const statusClass = log.type === 'sent' ? 'status-success' : 'status-error';
+                
+                return `
+                    <div class="email-log-item">
+                        <div class="log-status">
+                            <i class="fas fa-${statusIcon} ${statusClass}"></i>
+                        </div>
+                        <div class="log-content">
+                            <p><strong>${log.recipient}</strong> - ${log.subject}</p>
+                            <small>${new Date(log.timestamp).toLocaleString()}</small>
+                        </div>
+                        <div class="log-type">
+                            <span class="badge ${log.type === 'sent' ? 'badge-success' : 'badge-error'}">
+                                ${log.type.toUpperCase()}
+                            </span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
         // Toggle read status
         function toggleReadStatus(msgId, msgCard) {
             if (readMessages.has(msgId)) {
@@ -358,7 +509,7 @@
 
         // Filter functionality
         function applyFilters() {
-            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+            const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
             
             filteredMessages = allMessages.filter(msg => {
                 const msgId = msg._id || msg.email;
@@ -377,7 +528,67 @@
             return div.innerHTML;
         }
 
-        // Event listeners
+        // ===========================
+        // TAB NAVIGATION
+        // ===========================
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabName = btn.dataset.tab;
+                
+                // Hide all tabs
+                document.querySelectorAll('.tab-content').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                
+                // Remove active from buttons
+                document.querySelectorAll('.tab-btn').forEach(b => {
+                    b.classList.remove('active');
+                });
+                
+                // Show selected tab
+                document.getElementById(tabName + '-tab').classList.add('active');
+                btn.classList.add('active');
+                
+                // Load email logs when email status tab is clicked
+                if (tabName === 'email-status') {
+                    renderEmailLogs();
+                }
+            });
+        });
+
+        // ===========================
+        // SETTINGS
+        // ===========================
+        document.getElementById('saveSettingsBtn')?.addEventListener('click', () => {
+            const settings = {
+                adminEmail: document.getElementById('adminEmail').value,
+                companyName: document.getElementById('companyName').value,
+                supportEmail: document.getElementById('supportEmail').value,
+                autoReply: document.getElementById('autoReplyCheck').checked
+            };
+            localStorage.setItem('adminSettings', JSON.stringify(settings));
+            
+            // Show success message
+            const btn = document.getElementById('saveSettingsBtn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Settings Saved!';
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+            }, 2000);
+        });
+
+        document.getElementById('clearDataBtn')?.addEventListener('click', () => {
+            if (confirm('Are you sure you want to clear all session data? This cannot be undone.')) {
+                localStorage.removeItem('readMessages');
+                localStorage.removeItem('emailLogs');
+                localStorage.removeItem('adminSettings');
+                location.reload();
+            }
+        });
+
+        // ===========================
+        // EVENT LISTENERS
+        // ===========================
         document.getElementById('searchInput').addEventListener('keyup', (e) => {
             handleSearch(e.target.value);
         });
@@ -404,11 +615,30 @@
             }
         });
 
-        // Load messages on page load
-        document.addEventListener('DOMContentLoaded', loadMessages);
+        // ===========================
+        // INITIALIZATION
+        // ===========================
+        document.addEventListener('DOMContentLoaded', () => {
+            loadMessages();
+            updateSessionTime();
+            
+            // Load saved settings
+            const settings = JSON.parse(localStorage.getItem('adminSettings') || '{}');
+            if (document.getElementById('adminEmail')) {
+                document.getElementById('adminEmail').value = settings.adminEmail || 'ayushsinghrajput643@gmail.com';
+                document.getElementById('companyName').value = settings.companyName || 'DevSpark';
+                document.getElementById('supportEmail').value = settings.supportEmail || 'ayushsinghrajput643@gmail.com';
+                if (document.getElementById('autoReplyCheck')) {
+                    document.getElementById('autoReplyCheck').checked = settings.autoReply !== false;
+                }
+            }
+        });
 
         // Auto-refresh every 30 seconds
-        setInterval(loadMessages, 30000);
+        setInterval(() => {
+            loadMessages();
+            updateSessionTime();
+        }, 30000);
     </script>
 </body>
 </html>
