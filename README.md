@@ -1,4 +1,4 @@
-# DevSpark - Web Development & Digital Solutions
+# TechSpark - Web Development & Digital Solutions
 
 A modern, full-stack web platform for a web development agency. Features a responsive website with contact form, admin dashboard, and dark mode support.
 
@@ -229,4 +229,4 @@ For issues or questions, please create an issue in the repository.
 
 ---
 
-**Built with ❤️ by DevSpark Team**
+**Built with ❤️ by TechSpark Team**
